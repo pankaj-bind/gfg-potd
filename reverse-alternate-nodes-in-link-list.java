@@ -24,3 +24,4 @@ class Solution {
         first.next = reverse(temp);
     }
 }
+
