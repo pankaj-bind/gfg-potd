@@ -1,38 +1,47 @@
-class GfG
-{
-    // Perform in-order traversal and return a list of sorted nodes
-    List<Node> sortedNodes = new ArrayList<>();
+class GfG {
+    // Initialize an index to keep track of the sorted nodes
+    int index = 0;
 
-    void inOrderTraversal(Node node) {
-        if (node == null)
-            return;
-
-        inOrderTraversal(node.left);
-        sortedNodes.add(node);
-        inOrderTraversal(node.right);
+    Node buildBalancedTree(Node root) {
+        // Count the number of nodes in the tree
+        int n = countNodes(root);
+        
+        // Initialize the index to 0
+        index = 0;
+        
+        // Build the balanced BST
+        return buildBalancedTree(root, n);
     }
 
-    // Build a balanced BST from the sorted nodes
-    Node buildBalancedTree(int start, int end) {
-        if (start > end)
+    // Helper function to count nodes in the tree
+    int countNodes(Node node) {
+        if (node == null)
+            return 0;
+
+        return countNodes(node.left) + 1 + countNodes(node.right);
+    }
+
+    // Build the balanced BST from the sorted nodes
+    Node buildBalancedTree(Node root, int n) {
+        if (n <= 0)
             return null;
 
-        int mid = (start + end) / 2;
-        Node node = sortedNodes.get(mid);
+        // Recursively build the left subtree
+        Node left = buildBalancedTree(root, n / 2);
 
-        node.left = buildBalancedTree(start, mid - 1);
-        node.right = buildBalancedTree(mid + 1, end);
+        // Create the current node
+        Node node = new Node(root.data);
+
+        // Move to the next index
+        index++;
+
+        // Recursively build the right subtree
+        Node right = buildBalancedTree(root, n - n / 2 - 1);
+
+        // Set the left and right children
+        node.left = left;
+        node.right = right;
 
         return node;
-    }
-
-    Node buildBalancedTree(Node root) 
-    {
-        // Step 1: Perform in-order traversal
-        inOrderTraversal(root);
-
-        // Step 2: Build balanced BST from sorted nodes
-        int n = sortedNodes.size();
-        return buildBalancedTree(0, n - 1);
     }
 }
