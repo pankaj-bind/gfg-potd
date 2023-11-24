@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class Solution {
     ArrayList<Long> nthRowOfPascalTriangle(int n) {
         // Code to generate Pascal's Triangle up to N rows
