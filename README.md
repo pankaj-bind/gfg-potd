@@ -1,4 +1,4 @@
-# GeeksforGeeks Problem of the Day Solutions using JAVA 
+# GeeksforGeeks Problem of the Day Solutions using JAVA and C++
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
